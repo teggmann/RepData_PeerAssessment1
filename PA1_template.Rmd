@@ -3,10 +3,20 @@
 
 ## Loading and preprocessing the data
 
-
+Read the file 'activity.csv' into activity:
+```{r}
+setwd("F:/Coursera/Reproducible Research")
+activity <- read.csv("activity.csv")
+good <- which(!is.na(activity$steps))
+act_nona <- activity[good,]
+```
 
 ## What is mean total number of steps taken per day?
-
+mean total per day:
+```{r}
+somme <- sapply(split(act_nona$steps, act_nona$date, drop = TRUE), sum)
+hist(somme, breaks = 5)
+```
 
 
 ## What is the average daily activity pattern?
